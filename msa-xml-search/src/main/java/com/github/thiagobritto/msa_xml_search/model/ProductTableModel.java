@@ -11,8 +11,9 @@ public class ProductTableModel extends AbstractTableModel {
 
 	private List<ProductModel> products;
 
-	public ProductTableModel(ProductModel[] products) {
-		this.products = List.of(products);
+	public ProductTableModel(List<ProductModel> products) {
+		//ArrayList<Object> arrayList = new ArrayList<>();
+		this.products = products;
 	}
 
 	@Override

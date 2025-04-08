@@ -8,9 +8,11 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -135,14 +137,14 @@ public class ApplicationController {
 				}
 			}
 			return false;
-		}).toList();
+		}).collect(Collectors.toList());
 		// Mostrar
 		view.tableXml.setModel(new NfeTableModel(nfeListModel));
 		view.tableXml.getColumnModel().getColumn(0).setMaxWidth(100);
 		view.lblNfeCount.setText(String.format("%s Resultados", nfeListModel.size()));
 		view.btnExportCSV.setEnabled(nfeListModel.size() > 0);
 
-		ProductModel[] tableProductsEmpty = {};
+		List<ProductModel> tableProductsEmpty = new ArrayList<>();
 		view.tableProducts.setModel(new ProductTableModel(tableProductsEmpty));
 		view.tableProducts.getColumnModel().getColumn(0).setMaxWidth(100);
 		view.txtTotal.setText("0,00");
@@ -182,7 +184,7 @@ public class ApplicationController {
 			for (ProductModel product : nfe.getProducts()) {
 				total += product.gettVal();
 			}
-			view.tableProducts.setModel(new ProductTableModel(nfe.getProducts()));
+			view.tableProducts.setModel(new ProductTableModel(Arrays.asList(nfe.getProducts())));
 			view.tableProducts.getColumnModel().getColumn(0).setMaxWidth(100);
 			view.txtTotal.setText(String.format("%.2f", total));
 

@@ -1,8 +1,11 @@
 package com.github.thiagobritto.msa_xml_search;
 
+import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Font;
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -19,7 +22,6 @@ import javax.swing.SwingUtilities;
 import com.github.thiagobritto.msa_xml_search.model.NfeTableModel;
 import com.github.thiagobritto.msa_xml_search.model.ProductModel;
 import com.github.thiagobritto.msa_xml_search.model.ProductTableModel;
-import java.awt.Color;
 
 public class ApplicationView extends JFrame {
 	private static final long serialVersionUID = 1L;
@@ -73,7 +75,7 @@ public class ApplicationView extends JFrame {
 		scrollPane_2.setBounds(10, 275, 764, 179);
 		getContentPane().add(scrollPane_2);
 
-		ProductModel[] emptyProduct = {};
+		List<ProductModel> emptyProduct = new ArrayList<>();
 		tableProducts = new JTable(new ProductTableModel(emptyProduct));
 		tableProducts.getColumnModel().getColumn(0).setMaxWidth(100);
 		// Permite varias linhas selecionadas
